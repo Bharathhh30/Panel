@@ -1,25 +1,30 @@
-import { Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { Link, Slot } from "expo-router";
+import FontAwesome from '@expo/vector-icons/FontAwesome';
+import { Tabs } from 'expo-router';
 
-
-export default function Layout(){
-    return <SafeAreaView>
-        <Link href={"/"}>
-            <Text>Take me to For you page</Text>
-        </Link>
-
-        <Link href={"/account"}>
-            <Text>Take me to Account page</Text>
-        </Link>
-
-        <Link href={"/explore"}>
-            <Text>Take me to Explore page</Text>
-        </Link>
-
-        <Slot/>
-    </SafeAreaView>
+export default function TabLayout() {
+  return (
+    <Tabs screenOptions={{ tabBarActiveTintColor: 'blue', headerShown: false }}>
+      <Tabs.Screen
+        name="index" // This is the name of the screen(file name)
+        options={{
+          title: 'For You',
+          tabBarIcon: ({ color }) => <FontAwesome size={28} name="home" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="account"
+        options={{
+            title: 'Account',
+            tabBarIcon: ({ color }) => <FontAwesome size={28} name="cog" color={color} />,
+        }}
+      />
+        <Tabs.Screen
+          name="explore"
+          options={{
+            title: 'Explore',
+            tabBarIcon: ({ color }) => <FontAwesome size={28} name="cog" color={color} />,
+          }}
+        />
+    </Tabs>
+  );
 }
-
-
-// slot is similar to childerm , bakhi ka code
