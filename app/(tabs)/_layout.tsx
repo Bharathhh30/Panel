@@ -5,12 +5,19 @@ export default function TabLayout() {
   return (
     <Tabs screenOptions={{ tabBarActiveTintColor: 'blue', headerShown: false }}>
       <Tabs.Screen
-        name="index" // This is the name of the screen(file name)
+        name="foryou" // This is the name of the screen(file name)
         options={{
           title: 'For You',
           tabBarIcon: ({ color }) => <FontAwesome size={28} name="home" color={color} />,
         }}
       />
+      <Tabs.Screen
+          name="index"
+          options={{
+            title: 'Explore',
+            tabBarIcon: ({ color }) => <FontAwesome size={28} name="cog" color={color} />,
+          }}
+        />
       <Tabs.Screen
         name="account"
         options={{
@@ -18,13 +25,7 @@ export default function TabLayout() {
             tabBarIcon: ({ color }) => <FontAwesome size={28} name="cog" color={color} />,
         }}
       />
-        <Tabs.Screen
-          name="explore"
-          options={{
-            title: 'Explore',
-            tabBarIcon: ({ color }) => <FontAwesome size={28} name="cog" color={color} />,
-          }}
-        />
+        
     </Tabs>
   );
 }
