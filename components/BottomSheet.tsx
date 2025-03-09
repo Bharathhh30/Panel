@@ -5,6 +5,8 @@ import { Wallpaper } from '@/hooks/useWallpapers';
 import { Ionicons } from '@expo/vector-icons';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import { ThemedText } from './ThemedText';
+import * as MediaLibrary from 'expo-media-library';
+import * as FileSystem from 'expo-file-system';
 
 export const DownloadPicture = ({onClose,wallpaper}:{
     onClose:()=>void;
@@ -59,7 +61,7 @@ export const DownloadPicture = ({onClose,wallpaper}:{
             <View style = {styles.textContainer}>
               <ThemedText style = {styles.text}>{wallpaper.name}</ThemedText>
             </View>
-            <DownloadButton/>
+            <DownloadButton url={wallpaper.url}/>
         </BottomSheetView>
       </BottomSheet>
   );    
@@ -68,8 +70,28 @@ export const DownloadPicture = ({onClose,wallpaper}:{
 
 // hardcoded as "white" , else it would be like this "{theme === 'light' ? Colors.light.icon : Colors.dark.icon}"
 
-function DownloadButton(){
-  return <Pressable style={{
+function DownloadButton({url}:{url:string}){
+
+  const theme = useColorScheme() ?? 'light';
+  return <Pressable onPress={async()=>{
+    let date = new Date().getTime()
+    let fileUri = FileSystem.documentDirectory + `${date}.jpg`
+
+    try {
+      await FileSystem.downloadAsync(url,fileUri)
+      const response = await MediaLibrary.requestPermissionsAsync(true)
+      if(response.granted){
+        MediaLibrary.createAssetAsync(fileUri)
+        alert("Downloaded Successfully")
+      }else{
+        console.error("Permission Denied")
+      }
+    } catch (err) {
+      console.log(err)  
+    }
+  }}
+  
+  style={{
     backgroundColor : "black",
     padding : 10,
     marginHorizontal : 40,

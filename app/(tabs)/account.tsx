@@ -16,7 +16,10 @@ export default function account(){
             <View style = {{flex:1}}>
                 <LoginButtons />
                 <ThemeSelector />
+                <Text style={styles.margin}>Enjoy the high defination
+                     WallPapers for Free absolutely ❤️</Text>
             </View>
+            
         </SafeAreaView>
 }
 

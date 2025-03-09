@@ -3,7 +3,7 @@
 // https://ideogram.ai/assets/image/lossless/response/h5llb1nMR3eCDY4sAmZV7g
 
 export interface Wallpaper{
-    url : String;
+    url : string;
     name : String;
 }
 

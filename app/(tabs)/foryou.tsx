@@ -9,7 +9,11 @@ const Tab = createMaterialTopTabNavigator();
 
 export default function ForYou() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={{
+        tabBarIndicatorStyle : {backgroundColor : "orange" , height : 6 , width : 75 , marginLeft : 25},
+      }}
+    >
       <Tab.Screen name="Library" component={LibraryScreen} />
       <Tab.Screen name="Liked" component={LikedScreen} />
       <Tab.Screen name="Suggested" component={SuggestedScreen} />
