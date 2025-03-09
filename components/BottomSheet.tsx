@@ -12,7 +12,7 @@ export const DownloadPicture = ({onClose,wallpaper}:{
 }) => {
   // ref
   const bottomSheetRef = useRef<BottomSheet>(null);
-      const theme = useColorScheme() ?? 'light'
+  const theme = useColorScheme() ?? 'light';
   
 
   // callbacks
@@ -38,16 +38,22 @@ export const DownloadPicture = ({onClose,wallpaper}:{
               
                 <Ionicons 
                 name={"close"} size={24} 
-                color="white" />
+                // color="white"
+                 color = {theme === "light" ? Colors.light.icon : Colors.dark.icon} 
+                />
               
 
               <View style={styles.topbarInner}>
                 <Ionicons 
                 name={"share"} size={24} 
-                color="white" />
+                // color="white" 
+                color = {theme === "light" ? Colors.light.icon : Colors.dark.icon}
+                />
                 <Ionicons 
                 name={"heart"} size={24} 
-                color="white"/>
+                // color="white"
+                color = {theme === "light" ? Colors.light.icon : Colors.dark.icon}
+                />
               </View>
             </View>
             <View style = {styles.textContainer}>
@@ -66,7 +72,8 @@ function DownloadButton(){
   return <Pressable style={{
     backgroundColor : "black",
     padding : 10,
-    margin : 20,
+    marginHorizontal : 40,
+    marginVertical : 20,
     display  : "flex",
     justifyContent : "center",
     flexDirection : "row",
