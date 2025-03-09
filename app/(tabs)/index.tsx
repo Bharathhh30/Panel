@@ -5,6 +5,7 @@
 import { DownloadPicture } from "@/components/BottomSheet";
 import { ImageCard } from "@/components/ImageCard";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
+import { SplitView } from "@/components/SplitView";
 import { ThemedView } from "@/components/ThemedView";
 import { useWallpapers, Wallpaper } from "@/hooks/useWallpapers";
 import { Link } from "expo-router";
@@ -21,32 +22,9 @@ export default function explore(){
     return <SafeAreaView style = {{flex:1}}> 
         <ParallaxScrollView headerBackgroundColor={{dark:"black",light:"white"}} 
         headerImage={<Image source = {{uri:wallpapers[0]?.url ?? ""}} style = {{flex:1}} />}>
-           <ThemedView style={styles.container}>
-
-            
-           <ThemedView style={styles.innerContainer}> 
-            <FlatList 
-                    data={wallpapers.filter((_,index) => index %2===0)}
-                    renderItem={({item})=> <View style={styles.imageContainer}><ImageCard onPress={()=>{
-                        setSelectedWallpaper(item)
-                    }}
-                    wallpaper={item}/></View>}
-                    keyExtractor={item => item.name}
-                />
-            </ThemedView>
-           <ThemedView style={styles.innerContainer}> 
-           <FlatList 
-                    data={wallpapers.filter((_,index) => index %2===1)}
-                    renderItem={({item})=> <View style={styles.imageContainer}><ImageCard onPress={()=>{
-                        setSelectedWallpaper(item)
-                    }}
-                    wallpaper={item}/></View>}
-                    keyExtractor={item => item.name}
-                />
-            </ThemedView>     
-           </ThemedView>
+           <SplitView wallpapers = {wallpapers} />
         </ParallaxScrollView>
-        {selectedWallpaper && <DownloadPicture wallpaper={selectedWallpaper} onClose={()=>setSelectedWallpaper(null)}/>}
+        
     </SafeAreaView>
 }
 
